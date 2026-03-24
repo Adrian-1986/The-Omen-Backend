@@ -1,40 +1,30 @@
-# Sistema de idiomas (i18n) simple
+# Videoclub (Java MVC)
 
-Este proyecto usa `ResourceBundle` de Java para cargar textos desde archivos `.properties` segun el idioma seleccionado. El objetivo es mantener la estructura MVC y centralizar las traducciones en un solo lugar.
+Proyecto Java vanilla con arquitectura MVC para gestionar peliculas desde consola.
 
-**Como funciona**
+**Requisitos**
 
-1. El usuario elige el idioma al inicio.
-2. Se define el `Locale` actual.
-3. `ResourceBundle` carga `messages_es.properties` o `messages_en.properties`.
-4. El menu obtiene los textos por clave con `LanguageManager.get(...)`.
+- Java 17 (o compatible)
+- Maven
+- MySQL en local
 
-**Ejemplo de uso**
+**Configuracion de base de datos**
 
-```java
-LanguageManager.setLanguage("es");
-System.out.println(LanguageManager.get("menu.create"));
+1. Crea la base de datos `videoclub`.
+2. Ejecuta el script: `src/main/resources/sql/videoclub.sql`.
+3. Ajusta credenciales en `DBConnection` si tu password es distinto.
+
+**Ejecucion**
+
+```bash
+mvn -q clean compile exec:java -Dexec.mainClass="org.example.Main"
 ```
 
-**Estructura de archivos**
+**Estructura MVC**
 
 ```
-src/main/java/util/LanguageManager.java
-src/main/resources/messages_es.properties
-src/main/resources/messages_en.properties
+src/main/java/org/example/model
+src/main/java/org/example/view
+src/main/java/org/example/controller
+src/main/java/org/example/repository
 ```
-
-**Diagrama**
-
-```mermaid
-flowchart TD
-    A[Usuario selecciona idioma] --> B[Se define Locale]
-    B --> C[Cargar ResourceBundle]
-    C --> D[Buscar clave]
-    D --> E[Obtener texto]
-    E --> F[Mostrar en consola]
-```
-
-**Agregar mas idiomas**
-
-Crea un nuevo archivo `messages_xx.properties` con las mismas claves y usa `LanguageManager.setLanguage("xx")`.

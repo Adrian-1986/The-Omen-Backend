@@ -3,7 +3,6 @@ package org.example;
 import org.example.controller.MovieController;
 import org.example.model.Movie;
 import org.example.view.MovieView;
-import util.LanguageManager;
 
 import java.util.List;
 import java.util.Scanner;
@@ -15,24 +14,12 @@ public class Main {
         MovieController controller = new MovieController();
         MovieView view = new MovieView();
 
-        // Seleccion inicial de idioma para cargar el ResourceBundle correcto.
-        System.out.println("Selecciona idioma / Select language:");
-        System.out.println("1. Espanol");
-        System.out.println("2. English");
-        System.out.print("Opcion: ");
-        String langOption = scanner.nextLine();
-        if ("2".equals(langOption)) {
-            LanguageManager.setLanguage("en");
-        } else {
-            LanguageManager.setLanguage("es");
-        }
-
         boolean running = true;
         while (running) {
-            System.out.println("1. " + LanguageManager.get("menu.create"));
-            System.out.println("2. " + LanguageManager.get("menu.view"));
-            System.out.println("3. " + LanguageManager.get("menu.exit"));
-            System.out.print(LanguageManager.get("menu.option") + " ");
+            System.out.println("1. Crear película");
+            System.out.println("2. Ver películas");
+            System.out.println("3. Salir");
+            System.out.print("Elige una opción: ");
 
             String option = scanner.nextLine();
 
